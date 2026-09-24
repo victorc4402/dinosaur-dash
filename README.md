@@ -1,3 +1,3 @@
 # dinosaur dash
 
-![bingus](https://github.com/victorc4402/dinosaur-dash/blob/hi/bingus.png)
+![bingus](https://github.com/victorc4402/dinosaur-dash/blob/main/bingus.png)
