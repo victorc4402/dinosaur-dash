@@ -10,7 +10,7 @@ public class obstacle : MonoBehaviour
     void Start()
     {
         Vector2 currentPosition = transform.position;
-        transform.position = new Vector2(startpos,-2.5f);
+        transform.position = new Vector2(startpos,-2.1f);
     }
 
     // Update is called once per frame
@@ -19,7 +19,15 @@ public class obstacle : MonoBehaviour
         transform.position += new Vector3(-obstaclespeed*Time.deltaTime,0);
         if (transform.position[0] < -14)
         {
-            transform.position = new Vector2(13,-2.5f);
+            transform.position = new Vector2(13,-2.1f);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Collision");
         }
     }
 }
