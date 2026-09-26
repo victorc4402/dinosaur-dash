@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class obstacle : MonoBehaviour
+
 {
     public float obstaclespeed = 0.00005f;
     public float startpos = 1;
@@ -27,7 +29,7 @@ public class obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Collision");
+            SceneManager.LoadScene("deadasf");
         }
     }
 }
