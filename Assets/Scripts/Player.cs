@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
         if (Keyboard.current.spaceKey.isPressed && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            AudioManager.Instance.PlaySoundEffect("jump");
             isGrounded = false;
+            AudioManager.Instance.PlaySoundEffect("jump"); 
         }
     }
 

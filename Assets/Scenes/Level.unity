@@ -711,8 +711,8 @@ GameObject:
   - component: {fileID: 1866893147}
   - component: {fileID: 1866893146}
   - component: {fileID: 1866893148}
-  - component: {fileID: 1866893150}
   - component: {fileID: 1866893151}
+  - component: {fileID: 1866893152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -821,19 +821,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1866893150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866893145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e0a79a565ea39644a2de4c7093e4d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  jumpForce: 22
 --- !u!61 &1866893151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -880,6 +867,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.12, y: 4.16}
   m_EdgeRadius: 0
+--- !u!114 &1866893152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866893145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0a79a565ea39644a2de4c7093e4d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  jumpForce: 22
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

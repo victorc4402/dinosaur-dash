@@ -1,6 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEditor;
 // YES CHATGPT MY HERO
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     // public method so i can just call this from any other scrip
@@ -16,11 +18,12 @@ public class AudioManager : MonoBehaviour
     {
         // pairs a name with a clip (for easy referencing within scripts)
         public string name;
-        public AudioClip clip;
+        public AudioClip[] clips;
     }
 
     public List<Sound> sounds = new List<Sound>();
-    private AudioSource audioSource;
+    private AudioSource sfxSource;
+    private AudioSource musicSource;
 
     // singleton thingy
     void Awake()
@@ -33,9 +36,15 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
 
-        audioSource = GetComponent<AudioSource>();
+        // sfx source
+        sfxSource = GetComponent<AudioSource>();
+
+        // Music Source
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.loop = true;
     }
 
     public void PlaySoundEffect(string soundName)
@@ -43,24 +52,39 @@ public class AudioManager : MonoBehaviour
         // look through list sounds to find the clip with matchig name
         Sound s = sounds.Find(sound => sound.name == soundName);
 
-        if (s == null)
+        if (s == null || s.clips.Length == 0)
         {
-            Debug.LogWarning($"Sound \"{soundName}\" not found in AudioManager!");
+            Debug.LogWarning($"Sound \"{soundName}\" not found! (AudioManager)");
             return;
         }
 
-        audioSource.PlayOneShot(s.clip);
+        // random index (from number of clips in the list) for random sound
+        int randomIndex = Random.Range(0, s.clips.Length);
+        AudioClip clipToPlay = s.clips[randomIndex];
+        sfxSource.PlayOneShot(clipToPlay);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+public void PlayMusic(string musicName)
     {
-        
-    }
+        Sound m = sounds.Find(Sound => Sound.name == musicName);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (m == null || m.clips.Length == 0)
+        {
+        Debug.LogWarning($"Music: \"{musicName}\" not found! (AudioManager)");
+        return;
+        }
+
+        // figure out how to random looping music
+        // only takes the first music clip m.clips[0]
+
+        AudioClip musicClip = m.clips[0];
+
+        // dont play music every frame lmao
+        if (musicSource.clip == musicClip)
+        {
+            return;    
+        }
+        musicSource.clip = musicClip;
+        musicSource.Play();
     }
 }
