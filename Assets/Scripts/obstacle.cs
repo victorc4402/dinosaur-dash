@@ -29,6 +29,7 @@ public class obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.StopMusic();
             AudioManager.Instance.PlaySoundEffect("death");
             SceneManager.LoadScene("deadasf");
         }

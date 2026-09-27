@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 665193951}
   - component: {fileID: 665193950}
   - component: {fileID: 665193949}
+  - component: {fileID: 665193952}
   m_Layer: 5
   m_Name: play game
   m_TagString: Untagged
@@ -339,16 +340,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
+      - m_Target: {fileID: 665193952}
+        m_TargetAssemblyTypeName: AudioButton, Assembly-CSharp
+        m_MethodName: ButtonPlayMusic
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: e581912d80467c04384e0db20dccc7fa, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: level_music
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1359419260}
@@ -401,6 +402,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665193947}
   m_CullTransparentMesh: 1
+--- !u!114 &665193952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665193947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c919e05dabf8ad52f8e7f254ac92dd17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioButton
+  musicPlaylistToStart: level_music
 --- !u!1 &759771484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1093,7 @@ MonoBehaviour:
   - name: button_press
     clips:
     - {fileID: 8300000, guid: e581912d80467c04384e0db20dccc7fa, type: 3}
-  - name: music_test
+  - name: level_music
     clips:
     - {fileID: 8300000, guid: ac8e25e1d07e2917e9555b621c266cf3, type: 3}
     - {fileID: 8300000, guid: b52ca88e497c18ace9301310cc550a57, type: 3}

@@ -25,6 +25,11 @@ public class AudioManager : MonoBehaviour
     private AudioSource sfxSource;
     private AudioSource musicSource;
 
+    // playlist stuff
+    private List<AudioClip> musicPlaylist = new List<AudioClip>();
+    private int currentTrackIndex = 0;
+    private bool isPlaylistActive = false;
+
     // singleton thingy
     void Awake()
     {
@@ -44,7 +49,16 @@ public class AudioManager : MonoBehaviour
 
         // Music Source
         musicSource = gameObject.AddComponent<AudioSource>();
-        musicSource.loop = true;
+        musicSource.loop = false;
+    }
+
+    void Update()
+    {
+        // play next when current clip stops
+        if (isPlaylistActive && !musicSource.isPlaying)
+        {
+            PlayNextTrack();
+        }
     }
 
     public void PlaySoundEffect(string soundName)
@@ -64,8 +78,9 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clipToPlay);
     }
 
-public void PlayMusic(string musicName)
-    {
+    public void PlayMusic(string musicName)
+    {   
+        Debug.Log("PlayMusic Triggered!");
         Sound m = sounds.Find(Sound => Sound.name == musicName);
 
         if (m == null || m.clips.Length == 0)
@@ -74,17 +89,54 @@ public void PlayMusic(string musicName)
         return;
         }
 
-        // figure out how to random looping music
-        // only takes the first music clip m.clips[0]
+        // playlist list creation & shuffling
+        musicPlaylist.Clear();
+        musicPlaylist.AddRange(m.clips);
+        ShufflePlaylist();
 
-        AudioClip musicClip = m.clips[0];
+        // play playlist from beginning
+        currentTrackIndex = 0;
+        isPlaylistActive = true;
 
-        // dont play music every frame lmao
-        if (musicSource.clip == musicClip)
+        PlayTrackAtIndex();
+    }
+
+    private void PlayNextTrack()
+    {
+        currentTrackIndex++;
+        // reshuffle & replay playlist from beginning upon playlist completion
+        if (currentTrackIndex >= musicPlaylist.Count)
         {
-            return;    
+            ShufflePlaylist();
+            currentTrackIndex = 0;
         }
-        musicSource.clip = musicClip;
+
+        PlayTrackAtIndex();
+    }
+
+    private void PlayTrackAtIndex()
+    {
+        musicSource.clip = musicPlaylist[currentTrackIndex];
         musicSource.Play();
+    }
+
+    private void ShufflePlaylist()
+    {
+        // Fisher-Yates Shuffle: a standard way to randomly reorder a list
+        // thank you very much, kind Large Language Model!
+        for (int i = 0; i < musicPlaylist.Count; i++)
+        {
+            int randomIndex = Random.Range(i, musicPlaylist.Count);
+            AudioClip temp = musicPlaylist[i];
+            musicPlaylist[i] = musicPlaylist[randomIndex];
+            musicPlaylist[randomIndex] = temp;
+        }
+    }
+    public void StopMusic()
+    {
+        Debug.Log("stop music tiggered");
+        isPlaylistActive = false;
+        musicSource.Stop();
+        // Destroy(gameObject);
     }
 }
