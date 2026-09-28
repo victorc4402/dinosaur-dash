@@ -25,13 +25,4 @@ public class obstacle : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            AudioManager.Instance.StopMusic();
-            AudioManager.Instance.PlaySoundEffect("death");
-            SceneManager.LoadScene("deadasf");
-        }
-    }
 }
