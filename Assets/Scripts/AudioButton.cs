@@ -10,7 +10,7 @@ public class AudioButton : MonoBehaviour
         if (!string.IsNullOrEmpty(musicPlaylistToStart)) // AudioManager object disconnects from the button due to the singleton thing
         {                                                  // when the thing uhh idk this just fixes it 
             AudioManager.Instance.PlayMusic(musicPlaylistToStart);
-            Debug.Log("bruh did the above line even do anything");
+            Debug.Log("button successfuly played music");
         }
     }
 }
