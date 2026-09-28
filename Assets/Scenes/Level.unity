@@ -712,6 +712,7 @@ GameObject:
   - component: {fileID: 1866893146}
   - component: {fileID: 1866893148}
   - component: {fileID: 1866893151}
+  - component: {fileID: 1866893153}
   - component: {fileID: 1866893152}
   m_Layer: 0
   m_Name: Player
@@ -769,7 +770,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5214091726812599, guid: f95f254d9aff45644840a3a32ef81c0b, type: 3}
+  m_Sprite: {fileID: -5384347749763676363, guid: aa1459be983490d40b06dd7804f55bf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -859,7 +860,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.12, y: 4.16}
+    oldSize: {x: 2.38, y: 3.47}
     newSize: {x: 3.12, y: 4.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -880,6 +881,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   jumpForce: 22
+  score: 0
+  scoreInterval: 1
+  scorePerTick: 10
+--- !u!114 &1866893153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866893145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e49a63789a12457c99e04bc9fd1c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TwoFrame
+  frame1: {fileID: 3810655804564021612, guid: 2fd57a78791cdb94a813da9fbb1475d5, type: 3}
+  frame2: {fileID: 6972439733060896906, guid: 24c508e0e3ea2d34b90a25aabd2b776b, type: 3}
+  frameRate: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
